@@ -1,0 +1,67 @@
+
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.font--heading {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #1191FF;
+  text-decoration: none;
+
+  &.support--visited {
+
+    &:visited {
+      color: #5426BD;
+    }
+
+  }
+
+  &[ng-click] {
+    cursor: pointer;
+  }
+
+}
+
+.text--truncate {
+  @include text-truncate();
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend .font--heading;
+}
+
+// Headings
+
+.heading--major {
+  color: #ffffff;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8em;
+  line-height: 1.3em;
+}
+
+// Links
+
+.link--faint {
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+  text-decoration: none;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+}
+
+.site-link {
+  color: #FFFFFF;
+  font-size: 1.4em;
+  font-weight: bold;
+  font-style: italic;
+}

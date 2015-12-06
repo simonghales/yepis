@@ -1,0 +1,43 @@
+
+.main-banner {
+  position: relative;
+  width: 100%;
+  background-color: #888888;
+  background-image: url(/assets/images/banner.jpg);
+  background-size: cover
+}
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+
+  .side-content {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    .btn {
+      margin-left: 10px;
+    }
+
+  }
+
+}
+
+.banner-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  min-height: 500px;
+  padding-top: 20px;
+
+  .btn-wrapper {
+    margin: 20px 0;
+  }
+
+}

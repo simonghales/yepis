@@ -1,0 +1,92 @@
+
+.main-featured {
+  margin: 80px 0;
+
+  .story-card {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+}
+
+
+$story-card-width: 600px;
+.story-card {
+  @extend .clearfix;
+  margin-left: auto;
+  margin-right: auto;
+  width: $story-card-width + (160px * 2);
+}
+
+.story-card--body {
+  @include box-shadow(0, 0, 20px, 1px, rgba(0,0,0,0.12));
+  @include border-radius(5px);
+  width: $story-card-width;
+  height: 428px;
+  float: left;
+}
+
+  .story-card--img {
+    @extend .img-cover;
+    @include border-radius-separate(5px, 5px, 0, 0);
+    width: 100%;
+    height: 355px;
+    background-color: #F0F0F0;
+
+    background-image: url(/assets/images/facepaintboys_1920.jpg);
+
+  }
+
+  .story-card--info {
+    @include border-radius-separate(0, 0, 5px, 5px);
+    background-color: #FFFFFF;
+    height: 428px - 355px;
+    padding: 15px;
+  }
+
+    .story-card--title {
+      color: #41515A;
+      font-weight: bold;
+      font-size: 1.3em;
+      margin: 1px 0 6px 0;
+    }
+
+    .story-card--desc {
+      //font-weight: 500;
+      font-size: 1.1em;
+    }
+
+.story-card--empty,
+.story-card--details {
+  width: 160px;
+}
+
+.story-card--empty {
+  height: 1px;
+  float: left;
+}
+
+.story-card--details {
+  height: 20px;
+  float: left;
+  padding: 15px 0 0 15px;
+}
+
+.author-details {}
+
+.author-details--img {
+  @extend .img-cover;
+  @include border-radius(50%);
+  width: 62px;
+  height: 62px;
+  background-color: #D0D0D0;
+  background-image: url(/assets/images/me.jpg);
+  margin-bottom: 6px;
+}
+
+.author-details--name {
+  color: #41515A;
+  font-weight: bold;
+}
+
+.author-details--when {}
