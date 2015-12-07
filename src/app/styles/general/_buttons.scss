@@ -7,6 +7,11 @@
   font-size: 1em;
   padding: 0;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
 }
 
 .btn--major {
@@ -19,19 +24,77 @@
   text-transform: uppercase;
   padding: 12px 28px;
 
+  &.state--disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+
 }
 
 .btn-clear {
   @extend %btn--reset;
+  @include transition(all 150ms ease);
   color: #FFFFFF;
   padding: 10px;
+
+  &.btn__darker {
+    color: $clr-light;
+
+    &:hover {
+      color: $clr-light__darker;
+    }
+
+  }
+
 }
 
 .btn-round-outline {
   @extend %btn--reset;
   @include border-radius(30px);
+  @include transition(all 150ms ease);
 
   color: #FFFFFF;
   border: 2px solid #FFFFFF;
   padding: 8px 15px;
+
+  &:hover {
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  &.btn__darker {
+    color: $clr-light;
+    border-color: $clr-light;
+
+    &:hover {
+      color: $clr-light__darker;
+      border-color: $clr-light__darker;
+    }
+
+  }
+
+}
+
+.btn--miniOption {
+  @extend %btn--reset;
+  @include transition(color 150ms ease);
+  color: $clr-light;
+  font-weight: bold;
+
+  &:hover {
+    color: $clr-dark;
+  }
+
+  &.state--active {
+    color: $clr-love;
+  }
+
+  &.btn--miniOption__comment {
+
+    .icon {
+      position: relative;
+      top: -1px;
+    }
+
+  }
+
 }

@@ -1,0 +1,29 @@
+
+.main-footer {
+  border-top: 1px solid $clr-faintest;
+  padding: 80px 0;
+  text-align: center;
+  color: $clr-light;
+
+  a {
+    margin: 0 3px;
+    display: inline-block;
+    padding: 0 3px;
+
+    &:hover {
+      color: $clr-light__darker;
+    }
+
+  }
+
+}
+
+.main-footer-buttons {
+  margin-bottom: 40px;
+  font-size: 1.3em;
+
+  .btn {
+    margin: 0 10px;
+  }
+
+}
