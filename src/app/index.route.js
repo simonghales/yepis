@@ -12,7 +12,7 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'mainVM'
       })
       .state('create', {
         url: '/create',

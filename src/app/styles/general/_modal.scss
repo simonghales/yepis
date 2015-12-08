@@ -1,0 +1,20 @@
+.modal-theme-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ngdialog-content {
+    position: relative;
+    width: 400px;
+    min-width: 400px;
+    background-color: #FFFFFF;
+  }
+
+}
+
+.modal {}
+
+.modal--generic {
+  min-height: 438px;
+  padding: 40px 30px;
+}

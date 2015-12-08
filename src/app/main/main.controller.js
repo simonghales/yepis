@@ -6,34 +6,45 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($log, StoryService) {
     var vm = this;
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1449398867540;
-    vm.showToastr = showToastr;
+    vm.data = {};
+
+    vm.states = {
+      loading: false,
+      loaded: false,
+      error: false
+    };
+
+    vm.getStories = getStories;
 
     activate();
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+      vm.getStories();
     }
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
+    function getStories() {
+      if(vm.states.loading) return;
+      vm.states.loading = true;
+      vm.states.error = false;
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
+      StoryService.getList({
+        random: 7
+      }).then(function(data) {
+        vm.data.stories = data;
+        vm.states.loaded = true;
+        vm.states.loading = false;
+        $log.debug("Loaded data", data);
+      }, function(error) {
+        $log.warn("Error", error);
+        vm.states.loaded = true;
+        vm.states.loading = false;
+        vm.states.error = true;
       });
+
     }
+
   }
 })();

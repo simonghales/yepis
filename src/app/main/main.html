@@ -1,12 +1,10 @@
-<section class="page--general">
+<section
+  ng-class="{
+    'state--loading' : mainVM.states.loading
+  }"
+  class="page--general state--loading">
   <section class="main-banner">
-    <header class="site-header">
-      <a href="#" class="site-link">yep.is</a>
-      <div class="side-content">
-        <button class="btn btn-clear">Sign In</button>
-        <button class="btn btn-round-outline">Create Account</button>
-      </div>
-    </header>
+    <site-header></site-header>
     <div class="banner-contents site-width--def">
       <div>
         <h1 class="heading--major">Share your photos with style</h1>
@@ -19,96 +17,14 @@
   </section>
   <section class="main-featured">
     <div class="site-width--def">
-      <article class="story-card">
-        <div class="story-card--empty"></div>
-        <div class="story-card--body">
-          <div class="story-card--img" style="background-image: url(/assets/images/facepaintboys_1920.jpg);">
-            <a href=""></a>
-          </div>
-          <div class="story-card--info">
-            <div class="text-wrapper">
-              <h2 class="story-card--title">India 2015</h2>
-              <h3 class="story-card--desc">Some photos I took during my 2015 India trip</h3>
-            </div>
-            <div class="options-wrapper">
-              <button class="btn btn--miniOption state--active">
-                <span class="icon icon-heart-empty hide--active m--inline"></span>
-                <span class="icon icon-heart show--active m--inline"></span>
-                <span class="text">127</span>
-              </button>
-              <button class="btn btn--miniOption btn--miniOption__comment">
-                <span class="icon icon-comment-empty"></span>
-                <text>12</text>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="story-card--details">
-          <div class="author-details">
-            <div class="author-details--img"></div>
-            <div class="author-details--name">Simon Hales</div>
-            <div class="author-details--when">2 hours ago</div>
-          </div>
-        </div>
-      </article>
-      <article class="story-card">
-        <div class="story-card--empty"></div>
-        <div class="story-card--body">
-          <div class="story-card--img" style="background-image:url(/assets/images/china.jpg);"></div>
-          <div class="story-card--info">
-            <div class="text-wrapper">
-              <h2 class="story-card--title">India 2015</h2>
-              <h3 class="story-card--desc">Some photos I took during my 2015 India trip</h3>
-            </div>
-            <div class="options-wrapper">
-              <button class="btn btn--miniOption">
-                <span class="icon icon-heart-empty"></span>
-                <span class="text">127</span>
-              </button>
-              <button class="btn btn--miniOption btn--miniOption__comment">
-                <span class="icon icon-comment-empty"></span>
-                <text>12</text>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="story-card--details">
-          <div class="author-details">
-            <div class="author-details--img" style="background-image:url(/assets/images/chiao.jpg);"></div>
-            <div class="author-details--name">Chiao Li</div>
-            <div class="author-details--when">8 hours ago</div>
-          </div>
-        </div>
-      </article>
-      <article class="story-card">
-        <div class="story-card--empty"></div>
-        <div class="story-card--body">
-          <div class="story-card--img" style="background-image:url(/assets/images/strawberry.jpg);"></div>
-          <div class="story-card--info">
-            <div class="text-wrapper">
-              <h2 class="story-card--title">India 2015</h2>
-              <h3 class="story-card--desc">Some photos I took during my 2015 India trip</h3>
-            </div>
-            <div class="options-wrapper">
-              <button class="btn btn--miniOption">
-                <span class="icon icon-heart-empty"></span>
-                <span class="text">127</span>
-              </button>
-              <button class="btn btn--miniOption btn--miniOption__comment">
-                <span class="icon icon-comment-empty"></span>
-                <text>12</text>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="story-card--details">
-          <div class="author-details">
-            <div class="author-details--img"></div>
-            <div class="author-details--name">Simon Hales</div>
-            <div class="author-details--when">3 hours ago</div>
-          </div>
-        </div>
-      </article>
+      <div class="show--loading">
+        <story-card-placeholder></story-card-placeholder>
+        <story-card-placeholder></story-card-placeholder>
+        <story-card-placeholder></story-card-placeholder>
+        <story-card-placeholder></story-card-placeholder>
+        <story-card-placeholder></story-card-placeholder>
+      </div>
+      <story-card ng-repeat="story in mainVM.data.stories" story="story"></story-card>
     </div>
   </section>
   <footer class="main-footer">

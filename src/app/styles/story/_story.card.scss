@@ -19,6 +19,24 @@ $story-card-width: 600px;
   @extend .clearfix;
 }
 
+.story-card--placeholder {
+
+  .story-card--title,
+  .story-card--desc {
+    color: rgba(0,0,0,0);
+    width: 100%;
+  }
+
+  .story-card--title {
+    background-color: $clr-dull;
+  }
+
+  .story-card--desc {
+    background-color: $clr-pale;
+  }
+
+}
+
 .story-card--body {
   @include box-shadow(0, 0, 20px, 1px, rgba(0,0,0,0.1));
   @include border-radius(5px);
@@ -50,6 +68,7 @@ $story-card-width: 600px;
     display: flex;
 
     .text-wrapper {
+      max-width: 475px; // temporary
       flex-grow: 1;
       //overflow: hidden;
     }
@@ -70,13 +89,17 @@ $story-card-width: 600px;
   }
 
     .story-card--title {
+      @include text-truncate();
+      display: inline-block;
       color: #41515A;
       font-weight: bold;
       font-size: 1.3em;
-      margin: 1px 0 6px 0;
+      margin: 1px 0 0 0;
+      line-height: 1.1em;
     }
 
     .story-card--desc {
+      @include text-truncate();
       //font-weight: 500;
       font-size: 1.1em;
     }

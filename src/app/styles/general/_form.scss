@@ -1,3 +1,14 @@
+%input--reset {
+  background: none;
+  border: 0;
+  font-size: 1em;
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
 
 .form--bold {
 
@@ -36,6 +47,58 @@
     font-weight: 500;
     resize: none;
     margin-bottom: 20px;
+  }
+
+}
+
+///
+
+.form--auth {
+
+  .form-title {
+    color: $clr-light__darker;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    //text-align: center;
+    font-weight: 300;
+    padding-left: 14px;
+  }
+
+  input {
+    @extend %input--reset;
+    display: block;
+    color: $clr-dark;
+    width: 100%;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 2px solid $clr-pale;
+    padding: 15px;
+    margin-bottom: 15px;
+
+    @include placeholder {
+      color: $clr-medium;
+      font-style: italic;
+    }
+
+    &:focus {
+
+      @include placeholder {
+        color: $clr-light__darker;
+      }
+
+    }
+
+  }
+
+  .form-options {
+    margin-top: 30px;
+    text-align: center;
+
+    a {
+      margin-top: 25px;
+      display: inline-block;
+    }
+
   }
 
 }

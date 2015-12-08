@@ -1,0 +1,37 @@
+<article class="story-card">
+  <div class="story-card--empty"></div>
+  <div class="story-card--body">
+    <div class="story-card--img" back-img="{{::cardVM.story.profile_image_urls[0].medium}}">
+      <a ng-href="#/s/{{::cardVM.story.id}}"></a>
+    </div>
+    <div class="story-card--info">
+      <div class="text-wrapper">
+        <a class="story-card--title"
+           ng-href="#/s/{{::cardVM.story.id}}"
+           ng-bind="::cardVM.story.title"></a>
+        <h3 class="story-card--desc" ng-bind="::cardVM.story.description"></h3>
+      </div>
+      <div class="options-wrapper">
+        <button ng-class="{
+                  'state--active' : cardVM.story.voted
+                }"
+                class="btn btn--miniOption">
+          <span class="icon icon-heart-empty hide--active m--inline"></span>
+          <span class="icon icon-heart show--active m--inline"></span>
+          <span class="text" ng-bind="cardVM.story.num_votes">0</span>
+        </button>
+        <button class="btn btn--miniOption btn--miniOption__comment">
+          <span class="icon icon-comment-empty"></span>
+          <text ng-bind="::cardVM.story.num_comments">0</text>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="story-card--details">
+    <div class="author-details">
+      <div class="author-details--img"></div>
+      <div class="author-details--name" ng-bind="::cardVM.story.author.username"></div>
+      <div class="author-details--when">2 hours ago</div>
+    </div>
+  </div>
+</article>

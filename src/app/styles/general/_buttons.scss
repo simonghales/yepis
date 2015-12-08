@@ -2,6 +2,7 @@
 %btn--reset {
   @extend .font--heading;
 
+  display: inline-block;
   background: none;
   border: 0;
   font-size: 1em;
@@ -12,6 +13,11 @@
     outline: none;
   }
 
+}
+
+.btn--full {
+  display: block;
+  width: 100%;
 }
 
 .btn--major {

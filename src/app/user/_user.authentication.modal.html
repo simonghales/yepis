@@ -1,0 +1,44 @@
+<section ng-class="{
+          'state--submitting' : modalVM.states.submitting
+         }"
+         class="modal modal--generic form--auth">
+  <form name="signinForm" ng-if="modalVM.states.tab === 'login'" novalidate>
+    <h2 class="form-title">Sign In</h2>
+    <input ng-model="modalVM.inputs.username" type="text" placeholder="username" required=""/>
+    <input ng-model="modalVM.inputs.password" type="password" placeholder="password" required=""/>
+    <div class="form-options">
+      <button ng-class="{
+                'state--disabled' : signinForm.$invalid
+              }"
+              ng-click="modalVM.signIn(signinForm.$valid)"
+              class="btn btn--full btn--major">
+        <span class="hide--submitting">Sign In</span>
+        <span class="show--submitting m--inline">
+          Signing In <span class="icon-spin2 animate-spin"></span>
+        </span>
+      </button>
+      <a ng-hide="modalVM.states.submitting" class="link--option" ng-click="modalVM.changeTab('create');">need an account? <strong>create one</strong></a>
+    </div>
+  </form>
+  <form name="createForm" ng-if="modalVM.states.tab === 'create'" novalidate>
+    <h2 class="form-title">Create a free account</h2>
+    <input ng-model="modalVM.inputs.username" type="text" placeholder="username" required=""/>
+    <input ng-model="modalVM.inputs.email" type="email" placeholder="email" required=""/>
+    <input ng-model="modalVM.inputs.password" type="password" placeholder="password" required=""/>
+    <div class="form-options">
+      <button ng-class="{
+                'state--disabled' : createForm.$invalid
+              }"
+              ng-click="modalVM.signIn(createForm.$valid)"
+              class="btn btn--full btn--major">
+        <span class="hide--submitting">
+          Create Account
+        </span>
+        <span class="show--submitting m--inline">
+          Creating Account <span class="icon-spin2 animate-spin"></span>
+        </span>
+      </button>
+      <a ng-hide="modalVM.states.submitting" class="link--option" ng-click="modalVM.changeTab('login');">already have an account? <strong>sign in</strong></a>
+    </div>
+  </form>
+</section>
