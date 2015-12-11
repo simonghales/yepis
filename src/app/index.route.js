@@ -19,6 +19,12 @@
         templateUrl: 'app/create/create.html',
         //controller: 'MainController',
         //controllerAs: 'main'
+      })
+      .state('story', {
+        url: '/s/:id/:slug',
+        templateUrl: 'app/story/story.html',
+        controller: 'StoryController',
+        controllerAs: 'storyVM'
       });
 
     $urlRouterProvider.otherwise('/');

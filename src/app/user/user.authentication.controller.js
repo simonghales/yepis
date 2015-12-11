@@ -6,7 +6,7 @@
     .controller('UserAuthController', UserAuthController);
 
   /** @ngInject */
-  function UserAuthController($log, $scope, UserAuthService) {
+  function UserAuthController($log, $scope, $rootScope, UserAuthService, UserService, UserSessionService) {
     var vm = this;
 
     vm.changeTab = changeTab;
@@ -50,10 +50,29 @@
       })
         .then(function(data) {
           $log.debug("Authenticated user", data);
-          vm.states.submitting = false;
           // todo, store token, load user details
+          UserAuthService.setAuth(data.token, true);
+          _loadUserData();
         }, function(error) {
           $log.warn("Failed to authenticate user", error);
+          vm.states.error = true;
+          vm.states.submitting = false;
+        });
+
+    }
+
+    function _loadUserData() {
+
+      UserService.one('current').get()
+        .then(function(data) {
+          console.log("Got current user", data);
+          UserSessionService.create(data.id, data.plain());
+          UserService.storeUser(data.plain());
+          $rootScope.$broadcast('user-signedIn');
+          vm.states.submitting = false;
+          $scope.closeThisDialog();
+        }, function(error) {
+          console.log("Error getting current user", error);
           vm.states.error = true;
           vm.states.submitting = false;
         });

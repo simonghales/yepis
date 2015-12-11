@@ -1,0 +1,42 @@
+.quick-editor {
+  @extend .clearfix;
+  height: 760px;
+}
+
+  .quick-editor__preview {
+    height: 100%;
+    width: 300px;
+    background-color: #F8F8F8;
+    float: left;
+  }
+
+  .quick-editor__options {
+    overflow: hidden;
+  }
+
+.list--pagePreviews {
+
+  > li {
+    margin: 30px;
+  }
+
+}
+
+.pagePreview {
+  @include border-radius(3px);
+  @extend .img-cover;
+  background-color: #F0F0F0;
+  width: 100%;
+  height: 135px;
+  overflow: hidden;
+  position: relative;
+}
+
+  .pagePreview__shade {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    background-color: rgba(255,255,255,0.8);
+  }

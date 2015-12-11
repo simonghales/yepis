@@ -2,12 +2,12 @@
   <div class="story-card--empty"></div>
   <div class="story-card--body">
     <div class="story-card--img" back-img="{{::cardVM.story.profile_image_urls[0].medium}}">
-      <a ng-href="#/s/{{::cardVM.story.id}}"></a>
+      <a ng-href="#/s/{{::cardVM.story.id}}/slug"></a>
     </div>
     <div class="story-card--info">
       <div class="text-wrapper">
         <a class="story-card--title"
-           ng-href="#/s/{{::cardVM.story.id}}"
+           ng-href="#/s/{{::cardVM.story.id}}/slug"
            ng-bind="::cardVM.story.title"></a>
         <h3 class="story-card--desc" ng-bind="::cardVM.story.description"></h3>
       </div>
