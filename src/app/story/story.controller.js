@@ -6,10 +6,12 @@
     .controller('StoryController', StoryController);
 
   /** @ngInject */
-  function StoryController($log, $scope, $stateParams, StoryService, StoryModalsService) {
+  function StoryController($log, $scope, $stateParams, StoryService, StoryModalsService, UserService) {
     var vm = this;
 
     vm.states = {
+      author: false,
+      editing: false,
       loaded: false,
       loading: false
     };
@@ -26,8 +28,9 @@
       vm.states.loading = true;
       StoryService.getStory(vm.id)
         .then(function(data) {
-          $log.debug("loaded story", data);
+          $log.debug("loaded story", data.plain());
           vm.story = data;
+          _checkAuthor();
           vm.states.loaded = true;
           vm.states.loading = false;
         }, function(error) {
@@ -65,6 +68,17 @@
         }
 
       });
+    }
+
+    function _checkAuthor() {
+      if(!UserService.getUser()) return;
+      if(vm.story.author.id === UserService.getUser().id) {
+        $log.debug("This is the author!");
+        vm.states.author = true;
+        vm.states.editing = true;
+      } else {
+        $log.debug("This is not the author...");
+      }
     }
 
   }

@@ -5,7 +5,7 @@
   position: relative;
 
   @extend .img-cover;
-  background-image: url(/assets/images/kansananbu_1920.jpg);
+  //background-image: url(/assets/images/kansananbu_1920.jpg);
 
   .overlay {
     position: absolute;
@@ -55,6 +55,12 @@
     text-align: center;
   }
 
+  .story-intro__stats {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+  }
+
   .story-intro-title {
     font-size: 3em;
     line-height: 1.5em;
@@ -68,3 +74,30 @@
     font-size: 1.8em;
     line-height: 1.1em;
   }
+
+.story-edit-toggle {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  color: #ffffff;
+
+  &.state--active {
+
+    .indicator {
+      background-color: #FFFFFF;
+    }
+
+  }
+
+  .indicator {
+    @include border-radius(3px);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #FFFFFF;
+    margin-left: 4px;
+    position: relative;
+    top: 2px;
+  }
+
+}

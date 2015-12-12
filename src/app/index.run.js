@@ -17,6 +17,7 @@
       $rootScope.states.signedIn = true;
       if(UserService.isStoredUser()) {
         var user = UserService.getStoredUser();
+        UserService.setUser(user);
         UserSessionService.create(user.id, user);
       }
       _loadUserData();

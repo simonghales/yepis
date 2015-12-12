@@ -1,0 +1,56 @@
+
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+
+  .side-content {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    .btn {
+      margin-left: 10px;
+    }
+
+  }
+
+  &.site-header--dark {
+
+    .btn,
+    a {
+      color: $clr-medium;
+      border-color: $clr-medium;
+    }
+
+  }
+
+}
+
+
+.header-user {
+  @extend .clearfix;
+  cursor: pointer;
+}
+
+  .header-user__name {
+    float: left;
+    line-height: 40px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .header-user__thumb {
+    @extend .img-cover;
+    @include border-radius(50%);
+    display: inline-block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: #000000;
+    background-image: url(/assets/images/me.jpg);
+    margin-left: 12px;
+  }

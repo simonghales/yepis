@@ -1,4 +1,4 @@
-<section class="story-intro">
+<section class="story-intro" back-img="{{storyVM.story.profile_image_urls[0].original}}">
   <div class="overlay"></div>
   <div class="fade"></div>
   <div class="content-wrapper">
@@ -8,7 +8,18 @@
     </div>
   </div>
   <site-header class=""></site-header>
-  <div class="story-intro__option" ng-show="storyVM.states.loaded">
+  <div class="story-intro__option" ng-if="storyVM.states.editing" ng-show="storyVM.states.loaded">
     <story-add-page></story-add-page>
+  </div>
+  <button class="story-edit-toggle btn--reset"
+          ng-click="storyVM.states.editing = !storyVM.states.editing"
+          ng-class="{
+            'state--active' : storyVM.states.editing
+          }">
+    <span>Edit Mode</span>
+    <span class="indicator"></span>
+  </button>
+  <div class="story-intro__stats" ng-show="storyVM.states.loaded">
+    <story-like-button></story-like-button>
   </div>
 </section>

@@ -1,0 +1,8 @@
+<button class="btn--bigLike"
+        ng-class="{
+          'state--active' : storyVM.story.voted
+        }">
+  <span class="icon icon-heart-empty hide--active m--inline"></span>
+  <span class="icon icon-heart show--active m--inline"></span>
+  <span class="count" ng-bind="storyVM.story.num_votes"></span>
+</button>

@@ -7,36 +7,6 @@
   background-size: cover
 }
 
-.site-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-
-  .side-content {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-
-    .btn {
-      margin-left: 10px;
-    }
-
-  }
-
-  &.site-header--dark {
-
-    .btn,
-    a {
-      color: $clr-medium;
-      border-color: $clr-medium;
-    }
-
-  }
-
-}
-
 .banner-contents {
   display: flex;
   align-items: center;

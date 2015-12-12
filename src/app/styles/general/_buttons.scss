@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.btn--reset {
+  @extend %btn--reset;
+}
+
 .btn--major {
   @extend %btn--reset;
   @include border-radius(30px);
@@ -35,6 +39,18 @@
     cursor: default;
   }
 
+}
+
+.btn--miniRound {
+  @extend %btn--reset;
+  @include border-radius(50%);
+  background-color: $clr-major;
+  color: #FFFFFF;
+  font-size: 1.2em;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 32px;
 }
 
 .btn-clear {
@@ -116,4 +132,23 @@
 
 .icon--margin {
   margin-right: 3px;
+}
+
+.btn--bigLike {
+  @extend %btn--reset;
+  font-size: 1.4em;
+  color: #FFFFFF;
+
+  &.state--active {
+
+    .icon {
+      //color: $clr-love;
+    }
+
+  }
+
+  .count {
+    font-weight: 300;
+  }
+
 }
