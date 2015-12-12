@@ -6,6 +6,7 @@
 
       'yepis.general',
       'yepis.user',
+      'yepis.upload',
       'yepis.story',
 
       'ngAnimate',
@@ -15,7 +16,8 @@
       'restangular',
       'ui.router',
       'toastr',
-      'ngDialog'
+      'ngDialog',
+      'ngFileUpload'
     ]);
 
   // General
@@ -42,6 +44,17 @@
   angular.module('yepis.user.controllers', []);
 
   angular.module('yepis.user.services', []);
+
+  // Upload
+
+  angular.module('yepis.upload', [
+    'yepis.upload.controllers',
+    'yepis.upload.services'
+  ]);
+
+  angular.module('yepis.upload.controllers', []);
+
+  angular.module('yepis.upload.services', []);
 
   // Story
 

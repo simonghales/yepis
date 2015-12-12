@@ -104,3 +104,16 @@
   }
 
 }
+
+.btn--removePlain {
+  @extend %btn--reset;
+  @include border-radius(50%);
+  font-size: 18px;
+  width: 25px;
+  height: 25px;
+  background-color: #FFFFFF;
+}
+
+.icon--margin {
+  margin-right: 3px;
+}

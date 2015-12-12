@@ -1,7 +1,7 @@
 //** Generates state classes used to hide / reveal sections of the site
 
 // List of states that get iterated through
-$states-list: processing submitting busy loading empty disabled active;
+$states-list: completed processing submitting busy loading empty disabled active;
 
 %state-show {
   display: none;

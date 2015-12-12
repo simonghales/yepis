@@ -20,10 +20,10 @@
       var deferred = $q.defer();
 
       var modal = ngDialog.open({
-        template: 'app/story/_story.quickEditor.html',
+        template: 'app/story/editor/_story.quickEditor.html',
         className: 'modal-theme-default modal-theme-editor',
-        //controller: 'UserAuthController',
-        //controllerAs: 'modalVM',
+        controller: 'StoryQuickEditorController',
+        controllerAs: 'modalVM',
         showClose: false
       });
 

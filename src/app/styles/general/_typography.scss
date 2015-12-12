@@ -46,6 +46,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3em;
 }
 
+.heading--thickBig {
+  font-size: 2em;
+  line-height: 1.3em;
+  font-weight: bold;
+  color: $clr-dark;
+}
+
 // Links
 
 .link--faint {
@@ -73,4 +80,13 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: underline;
   }
 
+}
+
+
+// Text
+
+.text--average {
+  color: $clr-medium;
+  font-size: 1.3em;
+  line-height: 1.2em;
 }
