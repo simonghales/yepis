@@ -4,15 +4,17 @@
       <li ng-repeat="page in modalVM.story.pages">
         <div ng-class="{
                 'state--completed' : !page.imageUpdating,
-                'state--processing' : page.imageUpdating
+                'state--processing' : page.imageUpdating,
+                'state--deleting' : page.states.deleting
               }"
              class="pagePreview"
              back-img="{{page.background_image_urls[0].original}}">
           <div class="pagePreview__shade"
                ng-style="{
-                left: page.imageProgress + '%'
+                transform: 'translateX(' + page.imageProgress + '%)'
                }"></div>
-          <button class="pagePreview__remove btn btn--removePlain">
+          <button ng-click="modalVM.deletePage(page, $index)"
+                  class="pagePreview__remove btn btn--removePlain">
             <span class="icon icon-cancel"></span>
           </button>
           <div class="pagePreview__progressIndicator">
@@ -22,37 +24,19 @@
             </span>
             <span class="icon icon-ok show--completed m--inline"></span>
           </div>
+          <span class="deleting-indicator icon icon-spin2 animate-spin show--deleting"></span>
         </div>
       </li>
-      <!--<li>-->
-        <!--<div class="pagePreview state&#45;&#45;processing" style="background-image:url(/assets/images/kansananbu_1920.jpg);">-->
-          <!--<div class="pagePreview__shade"></div>-->
-          <!--<button class="pagePreview__remove btn btn&#45;&#45;removePlain">-->
-            <!--<span class="icon icon-cancel"></span>-->
-          <!--</button>-->
-          <!--<div class="pagePreview__progressIndicator">-->
-            <!--<span class="text hide&#45;&#45;completed">34%</span>-->
-            <!--<span class="icon icon-ok show&#45;&#45;completed m&#45;&#45;inline"></span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<li>-->
-        <!--<div class="pagePreview state&#45;&#45;processing" style="background-image:url(/assets/images/china.jpg);">-->
-          <!--<div class="pagePreview__shade" style="left: 25%;"></div>-->
-          <!--<button class="pagePreview__remove btn btn&#45;&#45;removePlain">-->
-            <!--<span class="icon icon-cancel"></span>-->
-          <!--</button>-->
-          <!--<div class="pagePreview__progressIndicator">-->
-            <!--<span class="text hide&#45;&#45;completed">34%</span>-->
-            <!--<span class="icon icon-ok show&#45;&#45;completed m&#45;&#45;inline"></span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</li>-->
+      <li ng-repeat="page in modalVM.pendingPages">
+        <div class="pagePreview pagePreview--pending">
+          creating page...
+        </div>
+      </li>
     </ul>
   </section>
   <section class="quick-editor__options">
     <h2 class="heading--thickBig">Quick Editor</h2>
-    <button class="btn btn--major" ngf-select="modalVM.uploadImage($file);">
+    <button class="btn btn--major" ngf-select="modalVM.addPage($file);">
       <span class="icon icon-picture icon--margin"></span>
       Upload Images
     </button>

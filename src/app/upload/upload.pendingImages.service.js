@@ -6,10 +6,11 @@
     .factory('PendingImagesService', PendingImagesService);
 
   /** @ngInject */
-  function PendingImagesService($log) {
+  function PendingImagesService($log, ImageUploadClass) {
 
     var service = {
       addPendingImage: addPendingImage,
+      newUploadingImage: newUploadingImage,
       pendingImages: {}
     };
 
@@ -17,7 +18,7 @@
 
     ///////////////
 
-    function addPendingImage(image, storyId, pageId) {
+    function addPendingImage(image, storyId, pageId, page) {
       var promise = image.listen();
 
       service.pendingImages['story-' + storyId + '-page-' + pageId] = image;
@@ -27,6 +28,11 @@
       }, function() {
         service.pendingImages['story-' + storyId + '-page-' + pageId] = null;
       });
+    }
+
+    function newUploadingImage(pageId, storyId, blob, dataURI, page) {
+      var uploadingImage = ImageUploadClass.build(pageId, storyId, blob, dataURI, page);
+      service.addPendingImage(uploadingImage, storyId, pageId);
     }
 
   }

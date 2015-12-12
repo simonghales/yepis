@@ -3,12 +3,12 @@
   <div class="fade"></div>
   <div class="content-wrapper">
     <div class="content">
-      <h1 class="story-intro-title">Shalom Home India</h1>
-      <h2 class="story-intro-subtitle">Photos from a Children's Home in India</h2>
+      <h1 class="story-intro-title" ng-bind="storyVM.story.title"></h1>
+      <h2 class="story-intro-subtitle" ng-bind="storyVM.story.description"></h2>
     </div>
   </div>
   <site-header class=""></site-header>
-  <div class="story-intro__option">
+  <div class="story-intro__option" ng-show="storyVM.states.loaded">
     <story-add-page></story-add-page>
   </div>
 </section>
