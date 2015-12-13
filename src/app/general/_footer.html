@@ -1,0 +1,12 @@
+<footer class="main-footer">
+  <div ng-if="!headerVM.user" class="main-footer-buttons">
+    <button ng-click="headerVM.authUser('login');" class="btn btn__darker btn-clear">Sign In</button>
+    <button ng-click="headerVM.authUser('create');" class="btn btn__darker btn-round-outline">Create Account</button>
+  </div>
+  <div>
+    <a href="">yep.is</a>
+    <a href="">about</a>
+    <a href="">contact</a>
+    <a href="">terms & conditions</a>
+  </div>
+</footer>

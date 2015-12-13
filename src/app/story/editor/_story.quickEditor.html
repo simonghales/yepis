@@ -27,7 +27,7 @@
           <span class="deleting-indicator icon icon-spin2 animate-spin show--deleting"></span>
         </div>
       </li>
-      <li ng-repeat="page in modalVM.pendingPages">
+      <li ng-repeat="page in modalVM.pendingPages track by $index">
         <div class="pagePreview pagePreview--pending">
           creating page...
         </div>

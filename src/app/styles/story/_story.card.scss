@@ -60,6 +60,18 @@ $story-card-width: 600px;
 
   }
 
+  .story-card__img--upload {
+
+    &.state--uploading {
+
+      .upload-options {
+        visibility: hidden;
+      }
+
+    }
+
+  }
+
   .story-card--info {
     @include border-radius-separate(0, 0, 5px, 5px);
     background-color: #FFFFFF;

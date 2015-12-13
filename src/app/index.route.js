@@ -17,8 +17,8 @@
       .state('create', {
         url: '/create',
         templateUrl: 'app/create/create.html',
-        //controller: 'MainController',
-        //controllerAs: 'main'
+        controller: 'CreateController',
+        controllerAs: 'createVM'
       })
       .state('story', {
         url: '/s/:id/:slug',

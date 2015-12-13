@@ -3,7 +3,5 @@
   <section class="story-pages">
     <story-page ng-repeat="page in storyVM.story.pages track by page.id"></story-page>
   </section>
-  <footer class="story-footer" ng-hide="!storyVM.states.loaded">
-    FOOTER OF THE STORY GOES HERE
-  </footer>
+  <site-footer ng-hide="!storyVM.states.loaded"></site-footer>
 </section>

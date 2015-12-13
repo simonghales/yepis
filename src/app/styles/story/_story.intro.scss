@@ -75,11 +75,46 @@
     line-height: 1.1em;
   }
 
+  .story-intro__left {
+    @extend .clearfix;
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+  }
+
+    .story-intro__author {
+      @extend .clearfix;
+      float: left;
+
+      .thumb {
+        @include border-radius(50%);
+        @extend .img-cover;
+        display: inline-block;
+        width: 42px;
+        height: 42px;
+        background-color: black;
+        margin-right: 8px;
+        float: left;
+        background-image: url(/assets/images/me.jpg);
+      }
+
+      .text {
+        line-height: 42px;
+        float: left;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+    }
+
 .story-edit-toggle {
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
+  //position: absolute;
+  //left: 30px;
+  //bottom: 30px;
+  float: left;
   color: #ffffff;
+  margin-left: 30px;
+  margin-top: 10px;
 
   &.state--active {
 

@@ -2,9 +2,13 @@
   <site-header class="site-header--dark"></site-header>
   <article class="story-card">
     <div class="story-card--body">
-      <div class="story-card--img flex--centered">
-        <div>
-          <button class="btn btn--major">Upload an Image</button>
+      <div class="story-card--img story-card__img--upload image-progress-wrapper flex--centered"
+           ng-class="{
+            'state--uploading' : createVM.states.image.uploading
+           }"
+           back-img="{{createVM.models.image}}">
+        <div class="upload-options">
+          <button ngf-select="createVM.uploadImage($file);" class="btn btn--major">Upload an Image</button>
           <p>
             or
             <br/>
@@ -12,21 +16,24 @@
             drag and drop an image here
           </p>
         </div>
+        <div ng-style="{
+        transform: 'translateX(' + createVM.models.imageProgress + '%)'
+        }" class="image-progress__shade show--uploading"></div>
       </div>
       <div class="story-card--info">
         <div class="text-wrapper">
-          <h2 class="story-card--title"></h2>
-          <h3 class="story-card--desc"></h3>
+          <h2 class="story-card--title" ng-bind="createVM.models.title"></h2>
+          <h3 class="story-card--desc" ng-bind="createVM.models.description"></h3>
         </div>
       </div>
     </div>
   </article>
   <div class="create-story__inputs form--bold">
     <div>
-      <input class="input--major" type="text" placeholder="Enter a title"/>
+      <input ng-model="createVM.models.title" class="input--major" type="text" placeholder="Enter a title"/>
     </div>
     <div>
-      <input class="input--minor" type="text" placeholder="Enter a description"/>
+      <input ng-model="createVM.models.description" class="input--minor" type="text" placeholder="Enter a description"/>
     </div>
     <button class="btn btn--major state--disabled">Create Story</button>
   </div>

@@ -27,6 +27,8 @@
     }
 
     function addPage(file) {
+      if(!file) return;
+      // Above is to fix the issue of the function being called twice, but why's it being called twice?
       vm.pendingPages.push('');
 
       // create page
