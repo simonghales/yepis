@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, UserAuthService, UserService, UserSessionService) {
+  function runBlock($log, $rootScope, $state, UserAuthService, UserService, UserSessionService) {
 
     $rootScope.states = {
       signedIn: false
@@ -36,6 +36,18 @@
         });
 
     }
+
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+
+        if(toState.data && toState.data.requiresLogin) {
+          if($rootScope.states.signedIn) return;
+          event.preventDefault();
+          $state.go('home');
+          return;
+        }
+
+      });
 
     $log.debug('runBlock end');
   }

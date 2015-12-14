@@ -2,23 +2,31 @@
   <site-header class="site-header--dark"></site-header>
   <article class="story-card">
     <div class="story-card--body">
-      <div class="story-card--img story-card__img--upload image-progress-wrapper flex--centered"
+      <div ngf-select="createVM.uploadImage($file);" class="story-card--img story-card__img--upload image-progress-wrapper flex--centered"
            ng-class="{
-            'state--uploading' : createVM.states.image.uploading
+            'state--uploading' : createVM.states.image.uploading,
+            'state--completed' : createVM.states.image.uploaded
            }"
            back-img="{{createVM.models.image}}">
         <div class="upload-options">
-          <button ngf-select="createVM.uploadImage($file);" class="btn btn--major">Upload an Image</button>
-          <p>
-            or
-            <br/>
-            <br/>
-            drag and drop an image here
-          </p>
+          <button class="btn btn--major">Upload an Image</button>
+          <!--<p>-->
+            <!--or-->
+            <!--<br/>-->
+            <!--<br/>-->
+            <!--drag and drop an image here-->
+          <!--</p>-->
         </div>
         <div ng-style="{
         transform: 'translateX(' + createVM.models.imageProgress + '%)'
         }" class="image-progress__shade show--uploading"></div>
+        <div class="pagePreview__progressIndicator show--uploading show--completed">
+            <span class="text hide--completed">
+              <span ng-hide="createVM.models.imageProgress == 100"><span ng-bind="createVM.models.imageProgress"></span>%</span>
+              <span ng-show="createVM.models.imageProgress == 100" class="icon icon-spin2 animate-spin"></span>
+            </span>
+          <span class="icon icon-ok show--completed m--inline"></span>
+        </div>
       </div>
       <div class="story-card--info">
         <div class="text-wrapper">
@@ -35,6 +43,9 @@
     <div>
       <input ng-model="createVM.models.description" class="input--minor" type="text" placeholder="Enter a description"/>
     </div>
-    <button class="btn btn--major state--disabled">Create Story</button>
+    <button class="btn btn--major"
+            ng-class="{
+              'state--disabled' : !createVM.isValidForm()
+            }">Create Story</button>
   </div>
 </section>

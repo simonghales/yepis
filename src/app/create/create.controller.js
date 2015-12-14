@@ -13,16 +13,19 @@
       title: '',
       description: '',
       image: '',
-      imageProgress: ''
+      imageProgress: 0,
+      imageId: ''
     };
 
     vm.states = {
       uploading: false,
       image: {
-        uploading: false
+        uploading: false,
+        uploaded: false
       }
     };
 
+    vm.isValidForm = isValidForm;
     vm.uploadImage = uploadImage;
 
     activate();
@@ -30,10 +33,19 @@
     function activate() {
     }
 
+    function isValidForm() {
+      if(vm.models.title &&
+        vm.models.description &&
+        vm.models.imageId &&
+        vm.states.image.uploaded) return true;
+      return false;
+    }
+
     function uploadImage(file) {
-      if(!file) return;
+      if(!file || vm.states.image.uploading) return;
       $log.debug("File to upload", file);
       vm.states.image.uploading = true;
+      vm.states.image.uploaded = false;
 
       ImageService.resizeImage(file, function(dataURI) {
 
@@ -67,10 +79,15 @@
 
         promise.then(function(data) {
           $log.debug("Uploaded image", data);
+
+          vm.models.imageId = data.data.id;
+
           vm.states.image.uploading = false;
+          vm.states.image.uploaded = true;
         }, function(error) {
           $log.warn("Failed to upload image", error);
           vm.states.image.uploading = false;
+          vm.states.image.uploaded = true;
         });
 
       });

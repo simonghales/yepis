@@ -18,7 +18,10 @@
         url: '/create',
         templateUrl: 'app/create/create.html',
         controller: 'CreateController',
-        controllerAs: 'createVM'
+        controllerAs: 'createVM',
+        data: {
+          requiresLogin: true
+        }
       })
       .state('story', {
         url: '/s/:id/:slug',
