@@ -35,6 +35,14 @@ function browserSyncInit(baseDir, browser) {
    */
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
 
+  server.middleware = proxyMiddleware('/imageproxy', {
+    target: 'http://storyapp-yep.s3-ap-southeast-2.amazonaws.com',
+    pathRewrite: {
+      "^/imageproxy" : ""
+    },
+    changeOrigin: true
+  });
+
   browserSync.instance = browserSync.init({
     startPath: '/',
     server: server,

@@ -6,19 +6,22 @@
     .controller('CreateController', CreateController);
 
   /** @ngInject */
-  function CreateController($log, Upload, ImageService, $http, API_URL) {
+  function CreateController($log, $location, Upload, ImageService, StoryService, $http, API_URL) {
     var vm = this;
 
     vm.models = {
       title: '',
       description: '',
       image: '',
+      imageData: null,
       imageProgress: 0,
       imageId: ''
     };
 
     vm.states = {
+      error: false,
       uploading: false,
+      submitting: false,
       image: {
         uploading: false,
         uploaded: false
@@ -27,6 +30,7 @@
 
     vm.isValidForm = isValidForm;
     vm.uploadImage = uploadImage;
+    vm.submit = submit;
 
     activate();
 
@@ -80,6 +84,7 @@
         promise.then(function(data) {
           $log.debug("Uploaded image", data);
 
+          vm.models.imageData = data.data;
           vm.models.imageId = data.data.id;
 
           vm.states.image.uploading = false;
@@ -91,6 +96,32 @@
         });
 
       });
+
+    }
+
+    function submit() {
+      if(!isValidForm() || vm.states.submitting) return;
+      vm.states.submitting = true;
+      vm.states.error = false;
+
+      var story = {
+        title: vm.models.title,
+        description: vm.models.description,
+        profile_images: [vm.models.imageData.id],
+        banner_images: [],
+        listed: true
+      };
+
+      StoryService.post(story)
+        .then(function(data) {
+          $log.debug("Created the story", data);
+          vm.states.submitting = false;
+          $location.path('/s/' + data.id + '/' + slugify(data.title));
+        }, function(error) {
+          $log.warn("Failed to create story", error);
+          vm.states.error = true;
+          vm.states.submitting = false;
+        });
 
     }
 

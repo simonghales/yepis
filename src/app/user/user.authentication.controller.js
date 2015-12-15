@@ -6,7 +6,7 @@
     .controller('UserAuthController', UserAuthController);
 
   /** @ngInject */
-  function UserAuthController($log, $scope, $rootScope, UserAuthService, UserService, UserSessionService) {
+  function UserAuthController($log, $scope, $rootScope, $timeout, UserAuthService, UserService, UserSessionService) {
     var vm = this;
 
     vm.changeTab = changeTab;
@@ -27,6 +27,11 @@
     activate();
 
     function activate() {
+
+      $timeout(function() {
+        var input = document.getElementById('form-auth-input-username');
+        if(input) input.focus();
+      }, 100);
 
       if($scope.ngDialogData && $scope.ngDialogData.tab) {
         vm.states.tab = $scope.ngDialogData.tab;

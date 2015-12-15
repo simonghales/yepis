@@ -2,7 +2,9 @@
          ng-class="{
           'state--loading' : storyVM.states.loading
          }"
-         back-img="{{storyVM.story.profile_image_urls[0].original}}">
+         > <!-- back-img="{{storyVM.story.profile_image_urls[0].original}}" -->
+  <story-intro-canvas id="story-intro-canvas-{{storyVM.id}}" ng-if="storyVM.states.loaded"
+                      img="storyVM.story.profile_image_urls[0]"></story-intro-canvas>
   <div class="overlay"></div>
   <div class="fade"></div>
   <div class="content-wrapper">
@@ -21,17 +23,33 @@
       <span class="thumb"></span>
       <span class="text">Simon</span>
     </div>
-    <button class="story-edit-toggle btn--reset"
-            ng-if="storyVM.states.author"
-            ng-click="storyVM.states.editing = !storyVM.states.editing"
-            ng-class="{
-            'state--active' : storyVM.states.editing
-          }">
-      <span>Edit Mode</span>
-      <span class="indicator"></span>
-    </button>
+    <!--<button class="story-edit-toggle btn&#45;&#45;reset"-->
+            <!--ng-if="storyVM.states.author"-->
+            <!--ng-click="storyVM.states.editing = !storyVM.states.editing"-->
+            <!--ng-class="{-->
+            <!--'state&#45;&#45;active' : storyVM.states.editing-->
+          <!--}">-->
+      <!--<span>Edit Mode</span>-->
+      <!--<span class="indicator"></span>-->
+    <!--</button>-->
   </div>
   <div class="story-intro__stats" ng-show="storyVM.states.loaded">
+    <div ng-if="storyVM.states.author" class="story-intro__author-controls">
+      <button class="btn btn--control"
+              ng-class="{
+                'state--active' : storyVM.states.editing
+              }"
+              ng-click="storyVM.states.editing = !storyVM.states.editing">
+        <span class="icon icon-pencil"></span>
+      </button>
+      <button class="btn btn--control">
+        <span class="icon icon-picture"></span>
+      </button>
+      <button ng-click="storyVM.deleteStory();"
+              class="btn btn--control">
+        <span class="icon icon-trash"></span>
+      </button>
+    </div>
     <story-like-button></story-like-button>
   </div>
 </section>

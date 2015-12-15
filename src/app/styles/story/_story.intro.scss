@@ -46,6 +46,21 @@
 
 }
 
+  .site-intro__canvas {
+    @include transition(opacity 300ms ease);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &.image--loaded {
+      opacity: 1;
+    }
+
+  }
+
   .story-intro__option {
     position: absolute;
     bottom: 30px;
@@ -106,6 +121,28 @@
       }
 
     }
+
+  .story-intro__author-controls {
+    @extend .clearfix;
+    float: left;
+    margin-right: 30px;
+    height: 42px;
+
+
+    .btn {
+      float: left;
+
+      &:first-of-type {
+        @include border-radius-separate(4px, 0, 4px, 0);
+      }
+
+      &:last-of-type {
+        @include border-radius-separate(0, 4px, 0, 4px);
+      }
+
+    }
+
+  }
 
 .story-edit-toggle {
   //position: absolute;

@@ -1,4 +1,7 @@
-<section class="create-story page--general">
+<section ng-class="{
+          'state--submitting' : createVM.states.submitting
+        }"
+         class="create-story page--general">
   <site-header class="site-header--dark"></site-header>
   <article class="story-card">
     <div class="story-card--body">
@@ -44,8 +47,14 @@
       <input ng-model="createVM.models.description" class="input--minor" type="text" placeholder="Enter a description"/>
     </div>
     <button class="btn btn--major"
+            ng-click="createVM.submit();"
             ng-class="{
               'state--disabled' : !createVM.isValidForm()
-            }">Create Story</button>
+            }">
+      <span class="hide--submitting">Create Story</span>
+      <span class="show--submitting m--inline">
+        Creating Story <span class="icon icon-spin2 animate-spin"></span>
+      </span>
+    </button>
   </div>
 </section>

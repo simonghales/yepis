@@ -1,0 +1,16 @@
+<div ng-class="{
+      'state--busy' : modalVM.states.busy
+     }"
+     class="modal modal--generic noMinHeight form--auth">
+  <h2 class="form-title">Delete Story</h2>
+  <h3 class="form-subtitle">Are you sure you want to delete your story? This is permanent.</h3>
+  <div class="form-options">
+    <button ng-click="modalVM.cancel();" class="btn btn--major btn--white">Cancel</button>
+    <button ng-click="modalVM.confirm();" class="btn btn--major">
+      <span class="hide--busy">Delete</span>
+      <span class="show--busy m--inline">
+        Deleting <span class="icon icon-spin2 animate-spin"></span>
+      </span>
+    </button>
+  </div>
+</div>

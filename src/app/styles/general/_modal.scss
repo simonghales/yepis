@@ -26,4 +26,14 @@
 .modal--generic {
   min-height: 438px;
   padding: 40px 30px;
+
+  &.noMinHeight {
+    min-height: 0;
+  }
+
+}
+
+
+.modal-prompt {
+  padding: 30px;
 }

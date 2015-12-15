@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, $state, UserAuthService, UserService, UserSessionService) {
+  function runBlock($log, $rootScope, $state, $window, UserAuthService, UserService, UserSessionService) {
 
     $rootScope.states = {
       signedIn: false
@@ -48,6 +48,14 @@
         }
 
       });
+
+    $rootScope.$on('user-signedIn',
+      function(event, toState, toParams, fromState, fromParams) {
+        $log.debug("Reload the state!!!");
+        //$state.go($state.current, {}, {reload: true});
+        //$state.reload();
+        $window.location.reload();
+    });
 
     $log.debug('runBlock end');
   }

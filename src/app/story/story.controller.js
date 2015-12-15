@@ -19,6 +19,7 @@
     vm.id = $stateParams.id;
     vm.story = null;
 
+    vm.deleteStory = deleteStory;
     vm.openQuickEditor = openQuickEditor;
 
     activate();
@@ -41,6 +42,10 @@
 
       _defaultListeners();
 
+    }
+
+    function deleteStory() {
+      StoryModalsService.deletePrompt(vm.story);
     }
 
     function openQuickEditor() {

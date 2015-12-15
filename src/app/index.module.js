@@ -25,12 +25,15 @@
   angular.module('yepis.general', [
     'yepis.general.controllers',
     'yepis.general.directives',
+    'yepis.general.filters',
     'yepis.general.services'
   ]);
 
   angular.module('yepis.general.controllers', []);
 
   angular.module('yepis.general.directives', []);
+
+  angular.module('yepis.general.filters', []);
 
   angular.module('yepis.general.services', []);
 
