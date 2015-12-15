@@ -60,7 +60,8 @@
 
       function drawImage() {
 
-        var proxyImage = scope.img.original;
+        var proxyImage = scope.img.thumbnail;
+        //var proxyImage = scope.img.original;
         proxyImage = proxyImage.replace("http://storyapp-yep.s3-ap-southeast-2.amazonaws.com", "/imageproxy");
 
         $log.debug("proxy image to use", proxyImage);
