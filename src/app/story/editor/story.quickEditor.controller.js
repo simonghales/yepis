@@ -14,6 +14,7 @@
     vm.addPage = addPage;
     vm.deletePage = deletePage;
     vm.done = done;
+    vm.newPages = newPages;
     vm.uploadImage = uploadImage;
 
     vm.story = StoryService.currentStory;
@@ -103,6 +104,14 @@
 
     function done() {
       $scope.closeThisDialog();
+    }
+
+    function newPages(files) {
+      if(files && files.length) {
+        for(var i = 0, len = files.length; i < len; i++) {
+          addPage(files[i]);
+        }
+      }
     }
 
     function uploadImage(file, page) {
