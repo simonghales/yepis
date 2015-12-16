@@ -16,6 +16,7 @@
     vm.done = done;
     vm.newPages = newPages;
     vm.uploadImage = uploadImage;
+    vm.updateStory = updateStory;
 
     vm.story = StoryService.currentStory;
     vm.pendingPages = [];
@@ -135,6 +136,15 @@
 
       });
 
+    }
+
+    function updateStory() {
+      vm.story.put()
+        .then(function() {
+          $log.debug("Updated story");
+        }, function(error) {
+          $log.debug("Failed to update story", error);
+        });
     }
 
   }

@@ -1,0 +1,33 @@
+<div
+     ng-class="{
+                'state--completed' : !page.imageUpdating,
+                'state--processing' : page.imageUpdating,
+                'state--deleting' : page.states.deleting
+              }"
+     class="pagePreview"
+     back-img="{{page.background_image_urls[0].original}}">
+
+  <!--data-drag="true" jqyoui-draggable-->
+  <!--data-jqyoui-options="{-->
+  <!--revert: 'invalid',-->
+  <!--revertDuration: 0,-->
+  <!--distance: 4,-->
+  <!--containment: 'document',-->
+  <!--}"-->
+  <div class="pagePreview__shade"
+       ng-style="{
+                transform: 'translateX(' + page.imageProgress + '%)'
+               }"></div>
+  <button ng-click="modalVM.deletePage(page, $index)"
+          class="pagePreview__remove btn btn--removePlain">
+    <span class="icon icon-cancel"></span>
+  </button>
+  <div class="pagePreview__progressIndicator">
+            <span class="text hide--completed">
+              <span ng-hide="page.imageProgress == 100"><span ng-bind="page.imageProgress"></span>%</span>
+              <span ng-show="page.imageProgress == 100" class="icon icon-spin2 animate-spin"></span>
+            </span>
+    <span class="icon icon-ok show--completed m--inline"></span>
+  </div>
+  <span class="deleting-indicator icon icon-spin2 animate-spin show--deleting"></span>
+</div>

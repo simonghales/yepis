@@ -6,21 +6,29 @@
     .controller('StoryController', StoryController);
 
   /** @ngInject */
-  function StoryController($log, $scope, $stateParams, StoryService, StoryModalsService, UserService) {
+  function StoryController($log, $scope, $timeout, $http, $stateParams, Upload, ImageService,
+                           StoryService, StoryModalsService, UserService, API_URL) {
     var vm = this;
 
     vm.states = {
       author: false,
       editing: false,
       loaded: false,
-      loading: false
+      loading: false,
+      profileImage: {
+        busy: false,
+        uploading: false,
+        progress: 0
+      }
     };
 
     vm.id = $stateParams.id;
     vm.story = null;
+    vm.profileImage = '';
 
     vm.deleteStory = deleteStory;
     vm.openQuickEditor = openQuickEditor;
+    vm.uploadProfileImage = uploadProfileImage;
 
     activate();
 
@@ -50,6 +58,76 @@
 
     function openQuickEditor() {
       StoryModalsService.quickEditor();
+    }
+
+    function uploadProfileImage(file) {
+
+      if(!file || vm.states.profileImage.busy) return;
+      $log.debug("File to upload", file);
+      vm.states.profileImage.busy = true;;
+
+      ImageService.resizeImage(file, function(dataURI) {
+
+        vm.states.profileImage.uploading = true
+
+        var blob = ImageService.dataURItoBlob(dataURI);
+
+        $timeout(function() {
+          vm.profileImage = dataURI;
+        });
+
+        var promise = Upload.upload({
+          url: API_URL + 'api/image/.json',
+          //file: {
+          //  "original" : blob
+          //},
+          file: blob,
+          fields: {
+            'original' : blob,
+            'remote_url':''
+          },
+          headers: {
+            Authorization: $http.defaults.headers.common['Authorization'],
+            'Content-Type': 'multipart/form-data'
+          },
+        });
+
+        promise.progress(function(evt) {
+          var progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+          vm.states.profileImage.progress = progress;
+          $log.debug("Progress: " + progress);
+        });
+
+        promise.then(function(data) {
+          $log.debug("Uploaded image", data);
+
+          //vm.models.imageData = data.data;
+          //vm.models.imageId = data.data.id;
+
+          vm.story.profile_image_urls[0] = data.data;
+          vm.story.profile_image_urls[0].thumbnail = dataURI;
+          vm.story.profile_images[0] = data.data.id;
+
+          vm.story.put()
+            .then(function() {
+              $log.debug("Updated profile image");
+            }, function(error) {
+              $log.warn("Failed to update profile image", error);
+            });
+
+          $log.debug("story now", vm.story);
+          vm.states.profileImage.uploading = false;
+          vm.states.profileImage.busy = false;
+        }, function(error) {
+          $log.warn("Failed to upload image", error);
+          vm.states.profileImage.uploading = false;
+          vm.states.profileImage.busy = false;
+        });
+
+        //$scope.$apply();
+
+      });
+
     }
 
     function _defaultListeners() {
