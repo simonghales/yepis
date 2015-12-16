@@ -10,7 +10,9 @@
   <div class="fade"></div>
   <div class="content-wrapper">
     <div class="content">
-      <h1 class="story-intro-title" ng-bind="storyVM.story.title"></h1>
+      <h1 class="story-intro-title">
+        <a ng-href="#/s/{{::storyVM.id}}/{{::storyVM.story.title | slugify }}" ng-bind="storyVM.story.title"></a>
+      </h1>
       <h2 class="story-intro-subtitle" ng-bind="storyVM.story.description"></h2>
       <h2 class="story-intro-subtitle show--loading">loading...</h2>
     </div>
