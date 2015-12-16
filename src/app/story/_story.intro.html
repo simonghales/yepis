@@ -4,7 +4,8 @@
          }"
          > <!-- back-img="{{storyVM.story.profile_image_urls[0].original}}" -->
   <story-intro-canvas id="story-intro-canvas-{{storyVM.id}}" ng-if="storyVM.states.loaded"
-                      img="storyVM.story.profile_image_urls[0]"></story-intro-canvas>
+                      img="storyVM.story.profile_image_urls[0]"
+                      blur-img="{{storyVM.story.profile_image_urls[0].thumbnail}}"></story-intro-canvas>
   <div class="overlay"></div>
   <div class="fade"></div>
   <div class="content-wrapper">
@@ -21,7 +22,7 @@
   <div class="story-intro__left" ng-show="storyVM.states.loaded">
     <div class="story-intro__author">
       <span class="thumb"></span>
-      <span class="text">Simon</span>
+      <span class="text" ng-bind="::storyVM.story.author.username"></span>
     </div>
     <!--<button class="story-edit-toggle btn&#45;&#45;reset"-->
             <!--ng-if="storyVM.states.author"-->
@@ -35,20 +36,29 @@
   </div>
   <div class="story-intro__stats" ng-show="storyVM.states.loaded">
     <div ng-if="storyVM.states.author" class="story-intro__author-controls">
-      <button class="btn btn--control"
-              ng-class="{
+      <div class="btn-wrapper">
+        <button
+          class="btn btn--control"
+          ng-class="{
                 'state--active' : storyVM.states.editing
               }"
-              ng-click="storyVM.states.editing = !storyVM.states.editing">
-        <span class="icon icon-pencil"></span>
-      </button>
-      <button class="btn btn--control">
-        <span class="icon icon-picture"></span>
-      </button>
-      <button ng-click="storyVM.deleteStory();"
-              class="btn btn--control">
-        <span class="icon icon-trash"></span>
-      </button>
+          ng-click="storyVM.states.editing = !storyVM.states.editing">
+          <span class="icon icon-pencil"></span>
+        </button>
+      </div>
+      <div class="btn-wrapper upload-image-preview-wrapper">
+        <button ngf-select="storyVM.uploadProfileImage($file);"
+                class="btn btn--control">
+          <span class="icon icon-picture"></span>
+        </button>
+        <story-profile-image-preview ng-if="storyVM.states.profileImage.busy"></story-profile-image-preview>
+      </div>
+      <div class="btn-wrapper">
+        <button ng-click="storyVM.deleteStory();"
+                class="btn btn--control">
+          <span class="icon icon-trash"></span>
+        </button>
+      </div>
     </div>
     <story-like-button></story-like-button>
   </div>

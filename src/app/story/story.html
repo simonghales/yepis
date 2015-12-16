@@ -1,11 +1,11 @@
 <section class="story">
   <story-intro></story-intro>
-  <section ng-if="::storyVM.states.author" class="story-pages">
+  <section ng-if="storyVM.states.author" class="story-pages">
     <story-page ng-repeat="page in storyVM.story.pages"></story-page>
   </section>
   <!-- can't use track by if the person can re-arrange, so we need to have two copies,
        one for author one for visitor -->
-  <section ng-if="::!storyVM.states.author" class="story-pages">
+  <section ng-if="!storyVM.states.author" class="story-pages">
     <story-page ng-repeat="page in storyVM.story.pages track by page.id"></story-page>
   </section>
   <site-footer ng-hide="!storyVM.states.loaded"></site-footer>

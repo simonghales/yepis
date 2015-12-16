@@ -5,6 +5,7 @@
           dnd-draggable="page"
           dnd-moved="modalVM.story.pages.splice($index, 1); modalVM.updateStory();"
           dnd-effect-allowed="move"
+          dnd-disable-if="page.imageUpdating || page.states.deleting"
           > <!--  track by $index -->
         <story-page-preview></story-page-preview>
       </li>

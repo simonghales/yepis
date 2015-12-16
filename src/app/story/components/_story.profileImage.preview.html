@@ -1,0 +1,13 @@
+<div
+     class="upload-image-preview">
+  <span class="down-arrow icon icon-down-dir"></span>
+  <div class="image" back-img="{{storyVM.profileImage}}">
+    <div class="image__shade" ng-style="{
+              transform: 'translateX(' + storyVM.states.profileImage.progress + '%)'
+            }"></div>
+    <span class="text hide--completed">
+        <span ng-hide="storyVM.states.profileImage.progress === 100"><span ng-bind="storyVM.states.profileImage.progress"></span>%</span>
+        <span ng-show="storyVM.states.profileImage.progress === 100" class="icon icon-spin2 animate-spin"></span>
+    </span>
+  </div>
+</div>

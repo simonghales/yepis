@@ -23,51 +23,43 @@
 
       var canvas;
       var canvasContext;
-      var canvasBackground;
       var resizeCanvasListener;
+      var imageLoaded = false;
+      var canvasBackground;
 
-      $timeout(function() {
+      canvas = element[0];
+      resizeCanvas();
+      canvasContext = canvas.getContext("2d")
 
-        canvas = element[0];
+      attrs.$observe('blurImg', function () {
+        drawImage();
+        $log.debug("blur img changed: " + attrs.blurImg);
+      });
 
-        resizeCanvas();
+      var window = angular.element($window);
+      window.bind('resize', resizeHandler);
 
-        canvasContext = canvas.getContext("2d")
-        canvasBackground = new Image();
-
-        if(scope.img) {
-          drawImage();
-        }
-
-        scope.$watch(scope.img, function(newVal, oldVal) {
-
-          $log.debug("scope img changed???", scope, newVal, oldVal, scope.img);
-
-          if(newVal !== oldVal) {
-            drawImage();
-          }
-
-        });
-
-        var window = angular.element($window);
-        window.bind('resize', resizeHandler);
-
-        scope.$on('$destroy', function(e) {
-          window.unbind('resize', resizeHandler);
-        });
-
+      scope.$on('$destroy', function(e) {
+        window.unbind('resize', resizeHandler);
       });
 
       function drawImage() {
 
-        var proxyImage = scope.img.thumbnail;
+        if(!attrs.blurImg) return;
+
+        var proxyImage = attrs.blurImg;
         //var proxyImage = scope.img.original;
         proxyImage = proxyImage.replace("http://storyapp-yep.s3-ap-southeast-2.amazonaws.com", "/imageproxy");
 
+        // http://storyapp-yep.s3-ap-southeast-2.amazonaws.com
+        // https://storyapp-yep.s3.amazonaws.com/media
+
         $log.debug("proxy image to use", proxyImage);
 
+        canvasBackground = new Image();
         canvasBackground.src = proxyImage;
         canvasBackground.onload = function() {
+          imageLoaded = true;
           drawBlur();
           $timeout(function() {
             element.addClass('image--loaded');
@@ -79,8 +71,12 @@
         // Store the width and height of the canvas for below
         var w = canvas.width;
         var h = canvas.height;
+        canvasContext.clearRect(0, 0, w, h);
         // This draws the image we just loaded to our canvas
-        canvasContext.drawImage(canvasBackground, 0, 0, w, h);
+        //canvasContext.drawImage(canvasBackground, 0, 0, w, h);
+
+        drawImageProp(canvasContext, canvasBackground, 0, 0, w, h, 0.5, 0.5);
+
         // This blurs the contents of the entire canvas
         stackBlurCanvasRGBA(attrs.id, 0, 0, w, h, 100);
       }
