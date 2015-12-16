@@ -22,7 +22,7 @@
         }
       ],
       "jQuery": {
-        "key": "jqLite"
+        "key": "jquery2"
       },
       "resource": {
         "key": "restangular",

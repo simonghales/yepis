@@ -1,7 +1,7 @@
 <section class="story">
   <story-intro></story-intro>
   <section class="story-pages">
-    <story-page ng-repeat="page in storyVM.story.pages track by page.id"></story-page>
+    <story-page ng-repeat="page in storyVM.story.pages"></story-page>
   </section>
   <site-footer ng-hide="!storyVM.states.loaded"></site-footer>
 </section>

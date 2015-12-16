@@ -17,7 +17,8 @@
       'ui.router',
       'toastr',
       'ngDialog',
-      'ngFileUpload'
+      'ngFileUpload',
+      'dndLists'
     ]);
 
   // General
