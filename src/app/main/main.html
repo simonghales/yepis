@@ -9,7 +9,9 @@
       <div>
         <h1 class="heading--major">Share your photos with style</h1>
         <div class="btn-wrapper">
-          <a class="btn btn--major" ng-href="#/create">Create a free Story</a>
+          <a class="btn btn--major"
+             ng-click="siteVM.requireAuth($event);"
+             ng-href="#/create">Create a free Story</a>
         </div>
         <a class="link--faint" href="">learn more</a>
       </div>

@@ -13,6 +13,7 @@
     vm.user = UserService.user;
 
     vm.states = {
+      dropdown: false,
       signedIn: false
     };
 

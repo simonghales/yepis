@@ -1,0 +1,14 @@
+<section class="fixed-message">
+  <div class="fixed-message-flex-wrapper fixed-message__icon icon icon-mail-alt"></div>
+  <div class="text">
+    <p>
+      You need to verify your email address before you can create
+      stories or add comments.
+    </p>
+    <p>
+      You should have received a confirmation email at <span ng-bind="::siteVM.user.email"></span>
+    </p>
+  </div>
+  <div ng-click="siteVM.states.showVerification = false"
+       class="fixed-message-flex-wrapper fixed-message__close icon icon-cancel"></div>
+</section>

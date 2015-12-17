@@ -10,6 +10,7 @@
     var vm = this;
 
     vm.changeTab = changeTab;
+    vm.createAccount = createAccount;
     vm.signIn = signIn;
 
     vm.inputs = {
@@ -21,27 +22,66 @@
     vm.states = {
       error: false,
       submitting: false,
-      tab: 'login'
+      tab: 'login',
+      create: {
+        submitting: false,
+        error: false
+      }
     };
 
     activate();
 
     function activate() {
 
-      $timeout(function() {
-        var input = document.getElementById('form-auth-input-username');
-        if(input) input.focus();
-      }, 100);
-
       if($scope.ngDialogData && $scope.ngDialogData.tab) {
         vm.states.tab = $scope.ngDialogData.tab;
       }
+
+      $timeout(function() {
+        focusInput();
+      }, 100);
 
     }
 
     function changeTab(tab) {
       vm.states.error = false;
       vm.states.tab = tab;
+      $timeout(function() {
+        focusInput();
+      });
+    }
+
+    function createAccount(valid) {
+      if(!valid || vm.states.create.submitting) return;
+      vm.states.create.submitting = true;
+      vm.states.create.error = false;
+
+      UserService.register.post({
+        username: vm.inputs.username,
+        email: vm.inputs.email,
+        password: vm.inputs.password,
+        userprofile: {
+          avatar_images: [],
+          bio: ""
+        }
+      }).then(function(data) {
+        $log.debug("Registered", data);
+
+        signIn(true);
+
+        //_getToken();
+      }, function(error) {
+        $log.warn("Failed to register", error);
+        vm.states.create.error = true;
+        vm.states.create.submitting = false;
+      });
+
+    }
+
+    function focusInput() {
+      var input = (vm.states.tab == 'create') ? document.getElementById('form-auth-input-username__create') :
+        document.getElementById('form-auth-input-username');
+      if(input) input.focus();
     }
 
     function signIn(valid) {
@@ -74,11 +114,13 @@
           UserSessionService.create(data.id, data.plain());
           UserService.storeUser(data.plain());
           $rootScope.$broadcast('user-signedIn');
+          vm.states.create.submitting = false;
           vm.states.submitting = false;
           $scope.closeThisDialog();
         }, function(error) {
           console.log("Error getting current user", error);
           vm.states.error = true;
+          vm.states.create.submitting = false;
           vm.states.submitting = false;
         });
 

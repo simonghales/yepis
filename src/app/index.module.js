@@ -18,7 +18,8 @@
       'toastr',
       'ngDialog',
       'ngFileUpload',
-      'dndLists'
+      'dndLists',
+      'offClick'
     ]);
 
   // General

@@ -1,13 +1,36 @@
 <header class="site-header">
   <a href="#" class="site-link">yep.is</a>
   <div class="side-content">
-    <div ng-if="!headerVM.user">
-      <button ng-click="headerVM.authUser('login');" class="btn btn-clear">Sign In</button>
-      <button ng-click="headerVM.authUser('create');" class="btn btn-round-outline">Create Account</button>
+    <div ng-if="!siteVM.user">
+      <button ng-click="siteVM.authUser('login');" class="btn btn-clear">Sign In</button>
+      <button ng-click="siteVM.authUser('create');" class="btn btn-round-outline">Create Account</button>
     </div>
-    <div class="header-user" ng-if="headerVM.user">
-      <span class="header-user__name">Simon</span>
+    <div ng-click="headerVM.states.dropdown = true"
+         class="header-user" ng-if="headerVM.user">
+      <span class="header-user__name" ng-bind="::headerVM.user.username"></span>
       <span class="header-user__thumb"></span>
+    </div>
+    <div ng-if="headerVM.states.dropdown"
+         off-click="headerVM.states.dropdown = false" off-click-if="headerVM.states.dropdown"
+         class="header-user-dropdown">
+      <div ng-click="headerVM.states.dropdown = false"
+           class="header-user-dropdown__close icon icon-cancel"></div>
+      <a class="header-user-dropdown__main">
+        <div class="username" ng-bind="::headerVM.user.username"></div>
+        <div>view profile</div>
+      </a>
+      <ul class="header-user-dropdown__list">
+        <li>
+          <a>
+            Settings
+          </a>
+        </li>
+        <li>
+          <a ng-click="siteVM.signOut();">
+            Sign Out
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </header>

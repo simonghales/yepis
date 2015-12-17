@@ -13,6 +13,7 @@
     service.register = Restangular.service('api/users/create');
     service.getCurrentUserAndStore = getCurrentUserAndStore;
     service.isStoredUser = isStoredUser;
+    service.clearUser = clearUser;
     service.getUser = getUser;
     service.getStoredUser = getStoredUser;
     service.setUser = setUser;
@@ -32,6 +33,10 @@
 
     function isStoredUser() {
       return !!$cookies.get('user');
+    }
+
+    function clearUser() {
+      $cookies.remove('user');
     }
 
     function getUser() {

@@ -1,0 +1,57 @@
+.fixed-message {
+  @include box-shadow(0, -1px, 4px, rgba(0, 0, 0, 0.11));
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 1000;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  @include transition(all 500ms ease);
+
+  &.ng-enter {
+    @include animation(slideInUp 500ms ease);
+  }
+
+  &.ng-leave {
+    @include animation(slideOutDown 500ms ease);
+  }
+
+  .text {
+    padding: 10px;
+  }
+
+}
+
+.fixed-message-flex-wrapper {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+}
+
+.fixed-message__icon,
+.fixed-message__close {
+  //width: 56px;
+  text-align: center;
+  line-height: 56px;
+  font-size: 18px;
+}
+
+.fixed-message__icon {
+  background-color: $clr-major;
+  color: #ffffff;
+}
+
+.fixed-message__close {
+  background-color: #FAFAFA;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #EAEAEA;
+  }
+
+}

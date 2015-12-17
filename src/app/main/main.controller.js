@@ -46,5 +46,9 @@
 
     }
 
+    function requireAuth(event) {
+
+    }
+
   }
 })();

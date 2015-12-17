@@ -5,6 +5,7 @@
 
 @import "styles/general/mixins";
 @import "styles/general/reset";
+@import "styles/general/animate";
 
 @import "styles/general/states";
 
@@ -24,6 +25,7 @@
 @import "styles/components/banner";
 @import "styles/components/footer";
 @import "styles/components/create";
+@import "styles/components/verification";
 
 @import "styles/story/story.card";
 @import "styles/story/story.components";
