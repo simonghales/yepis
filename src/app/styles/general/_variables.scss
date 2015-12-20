@@ -12,3 +12,19 @@ $clr-love: #E31E6A;
 $clr-pale: #F3F6F9;
 
 $clr-dull: #DCE4EA;
+
+// Shared Animations
+
+%growToggle {
+
+  @include transition(all 500ms ease);
+
+  &.ng-enter {
+    @include animation(bounceInDown 500ms ease);
+  }
+
+  &.ng-leave {
+    @include animation(bounceOut 500ms ease);
+  }
+
+}

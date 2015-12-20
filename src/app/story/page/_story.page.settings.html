@@ -1,0 +1,36 @@
+<div class="story-page-settings">
+  <div ng-if="page.states.optionsOpen" class="story-page-settings__dropdown"
+       off-click="page.states.optionsOpen = false" off-click-if="page.states.optionsOpen">
+    <div class="header-wrapper">
+      <h2>Page Options</h2>
+    </div>
+    <ul class="options-list">
+      <li>
+        <a ng-click="storyVM.openQuickEditor(); storyVM.togglePageOptions(page);">
+          <span class="icon icon-arrows-cw"></span>
+          Re-order Pages
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="icon icon-picture"></span>
+          Update Image
+        </a>
+      </li>
+      <li>
+        <a ng-click="storyVM.deletePage(page, $index);">
+          <span class="icon icon-trash"></span>
+          Delete Page
+        </a>
+      </li>
+    </ul>
+  </div>
+  <button ng-click="storyVM.togglePageOptions(page);"
+          ng-class="{
+            'state--active': page.states.optionsOpen
+          }"
+          class="btn btn--miniRound animated">
+    <span class="icon icon-cog hide--active"></span>
+    <span class="icon icon-cancel show--active m--inline"></span>
+  </button>
+</div>

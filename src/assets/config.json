@@ -121,6 +121,24 @@
       "src": "fontawesome"
     },
     {
+      "uid": "a73c5deb486c8d66249811642e5d719a",
+      "css": "arrows-cw",
+      "code": 59414,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "37c5ab63f10d7ad0b84d0978dcd0c7a8",
+      "css": "shuffle",
+      "code": 59415,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "6020aff067fc3c119cdd75daa5249220",
+      "css": "exchange",
+      "code": 59416,
+      "src": "fontawesome"
+    },
+    {
       "uid": "c709da589c923ba3c2ad48d9fc563e93",
       "css": "cancel",
       "code": 59398,

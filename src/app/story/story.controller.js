@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function StoryController($log, $scope, $timeout, $http, $stateParams, Upload, ImageService,
-                           StoryService, StoryModalsService, UserService, API_URL) {
+                           StoryService, StoryModalsService, StoryPageService, UserService, API_URL) {
     var vm = this;
 
     vm.states = {
@@ -26,7 +26,9 @@
     vm.story = null;
     vm.profileImage = '';
 
+    vm.deletePage = deletePage;
     vm.deleteStory = deleteStory;
+    vm.togglePageOptions = togglePageOptions;
     vm.openQuickEditor = openQuickEditor;
     vm.uploadProfileImage = uploadProfileImage;
 
@@ -52,8 +54,36 @@
 
     }
 
+    function deletePage(page, index) {
+      $log.debug("Delete page via this index", index);
+      if(page.states) page.states.deleting = true;
+      else page.states = {deleting: true};
+      $timeout(function() {
+        StoryPageService.one(page.id).remove()
+          .then(function() {
+            $log.debug("Deleted page");
+          }, function(error) {
+            $log.warn("Failed to delete page");
+          });
+        StoryService.removePage(page.id, index);
+      });
+    }
+
     function deleteStory() {
       StoryModalsService.deletePrompt(vm.story);
+    }
+
+    function togglePageOptions(page) {
+      if(!page.states) {
+        page.states = {
+          optionsOpen: false
+        };
+      }
+      if(!page.states.optionsOpen) {
+        page.states.optionsOpen = true;
+      } else {
+        page.states.optionsOpen = false;
+      }
     }
 
     function openQuickEditor() {

@@ -49,13 +49,25 @@
 .btn--miniRound {
   @extend %btn--reset;
   @include border-radius(50%);
-  background-color: $clr-major;
-  color: #FFFFFF;
+  @include box-shadow(0, 0, 7px, rgba(0,0,0,0.07));
+  background-color: #ffffff;
+  color: #8299A5;
   font-size: 1.2em;
   width: 42px;
   height: 42px;
   text-align: center;
   line-height: 32px;
+
+  &.state--active {
+    background-color: $clr-major;
+    color: #ffffff;
+
+    &.animated {
+      //@include animation(bounce 250ms ease);
+    }
+
+  }
+
 }
 
 .btn-clear {

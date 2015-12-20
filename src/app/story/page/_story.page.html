@@ -1,5 +1,6 @@
 <section ng-class="{
-          'state--uploadingImage' : page.imageUpdating
+          'state--uploadingImage' : page.imageUpdating,
+          'state--deleting' : page.states.deleting
          }"
          class="story-page" back-img="{{page.background_image_urls[0].original}}">
   <div
@@ -8,5 +9,6 @@
   }"
   class="story-page__shade show--uploadingImage"></div>
   <div class="story-page__content"></div>
+  <story-page-settings ng-if="storyVM.states.editing"></story-page-settings>
   <story-add-mini ng-if="storyVM.states.editing"></story-add-mini>
 </section>
