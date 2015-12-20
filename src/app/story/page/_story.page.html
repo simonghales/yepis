@@ -8,6 +8,12 @@
     transform: 'translateX(' + page.imageProgress + '%)'
   }"
   class="story-page__shade show--uploadingImage"></div>
+  <div class="story-page__bg-image-wrapper">
+    <img class="story-page__bg-image size--width"
+         src="/assets/images/blank.png"
+         ng-src="{{page.background_image_urls[0].original}}"
+         alt="Page image"/>
+  </div>
   <div class="story-page__content"></div>
   <story-page-settings ng-if="storyVM.states.editing"></story-page-settings>
   <story-add-mini ng-if="storyVM.states.editing"></story-add-mini>
