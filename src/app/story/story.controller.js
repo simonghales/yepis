@@ -7,7 +7,8 @@
 
   /** @ngInject */
   function StoryController($log, $scope, $timeout, $http, $stateParams, Upload, ImageService,
-                           StoryService, StoryModalsService, StoryPageService, UserService, API_URL) {
+                           StoryService, StoryModalsService, StoryPageService, StoryImageService,
+                           UserService, Restangular, API_URL) {
     var vm = this;
 
     vm.states = {
@@ -30,6 +31,7 @@
     vm.deleteStory = deleteStory;
     vm.togglePageOptions = togglePageOptions;
     vm.openQuickEditor = openQuickEditor;
+    vm.updatePageImage = updatePageImage;
     vm.uploadProfileImage = uploadProfileImage;
 
     activate();
@@ -88,6 +90,12 @@
 
     function openQuickEditor() {
       StoryModalsService.quickEditor();
+    }
+
+    function updatePageImage(file, page) {
+      if(!file) return;
+      StoryImageService.uploadImagePage(file, page, vm.id);
+      _newPageImageListener(page.id);
     }
 
     function uploadProfileImage(file) {
@@ -171,15 +179,16 @@
         var page = StoryService.findPage(pageId);
         $log.debug("Update story page as image has finished uploading!", page, response);
         page.background_images[0] = response.id;
-        if(page && page.put) {
-          page.put()
-            .then(function(data) {
-              $log.debug("Updated page", data);
-            }, function(error) {
-              $log.warn("Failed to update page");
-            });
+        if(page && !page.put) {
+          $log.debug("Setting up rest version of page");
+          page = Restangular.restangularizeElement(null, page, 'api/storypages');
         }
-
+        page.put()
+          .then(function(data) {
+            $log.debug("Updated page", data);
+          }, function(error) {
+            $log.warn("Failed to update page");
+          });
       });
     }
 

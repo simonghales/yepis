@@ -132,7 +132,7 @@
         page.imageUpdating = true;
         $log.debug("New page", page);
         vm.story.pages.push(page); // todo change back to push
-        addImageListener(page, page.id);
+        //addImageListener(page, page.id);
 
       });
 

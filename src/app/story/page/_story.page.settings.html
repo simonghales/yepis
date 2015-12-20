@@ -1,6 +1,11 @@
 <div class="story-page-settings">
-  <div ng-if="page.states.optionsOpen" class="story-page-settings__dropdown"
-       off-click="page.states.optionsOpen = false" off-click-if="page.states.optionsOpen">
+  <div ng-show="page.states.optionsOpen" class="story-page-settings__dropdown"
+       off-click="page.states.optionsOpen = false"
+       off-click-if="page.states.optionsOpen">
+    <!--
+       off-click="page.states.optionsOpen = false"
+       off-click-if="page.states.optionsOpen"
+       -->
     <div class="header-wrapper">
       <h2>Page Options</h2>
     </div>
@@ -12,7 +17,7 @@
         </a>
       </li>
       <li>
-        <a href="">
+        <a ngf-select="storyVM.updatePageImage($file, page);">
           <span class="icon icon-picture"></span>
           Update Image
         </a>

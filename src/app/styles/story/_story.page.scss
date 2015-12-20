@@ -51,7 +51,7 @@
   }
 
     .story-page-settings__dropdown {
-      @extend %growToggle;
+      @extend %popToggle;
       @include border-radius(2px);
       @include box-shadow(0, 0, 1px, rgba(0,0,0,0.15));
       background-color: #ffffff;
@@ -81,8 +81,10 @@
   > li {
   }
 
+  .anchor,
   a {
     color: $clr-medium;
+    cursor: pointer;
     display: block;
     padding: 7px 17px;
 
