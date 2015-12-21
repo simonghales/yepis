@@ -2,7 +2,7 @@
           'state--uploadingImage' : page.imageUpdating,
           'state--deleting' : page.states.deleting
          }"
-         class="story-page" back-img="{{page.background_image_urls[0].original}}">
+         class="story-page" > <!-- back-img="{{page.background_image_urls[0].original}}" -->
   <div
   ng-style="{
     transform: 'translateX(' + page.imageProgress + '%)'
@@ -11,7 +11,7 @@
   <div class="story-page__bg-image-wrapper">
     <img class="story-page__bg-image size--width"
          src="/assets/images/blank.png"
-         ng-src="{{page.background_image_urls[0].original}}"
+         cover-src="{{page.background_image_urls[0].original}}"
          alt="Page image"/>
   </div>
   <div class="story-page__content"></div>

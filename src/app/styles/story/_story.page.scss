@@ -26,6 +26,8 @@
     .story-page__bg-image {
       max-width: none;
       max-height: none;
+      //left: 50%;
+      position: relative;
 
       &.size--width {
         width: 100%;
