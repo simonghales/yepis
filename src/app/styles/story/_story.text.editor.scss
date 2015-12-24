@@ -1,0 +1,10 @@
+
+
+.text-editor {
+  @include box-shadow(0, 0, 10px, rgba(0,0,0,0.2));
+  position: absolute;
+  top: 140px;
+  left: 50px;
+
+  background-color: #fff;
+}
