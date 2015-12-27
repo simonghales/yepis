@@ -6,8 +6,10 @@
     .controller('StoryController', StoryController);
 
   /** @ngInject */
-  function StoryController($log, $scope, $timeout, $http, $stateParams, Upload, ImageService,
+  function StoryController($log, $scope, $rootScope, $timeout, $document,
+                           $http, $stateParams, Upload, ImageService,
                            StoryService, StoryModalsService, StoryPageService, StoryImageService,
+                           TextEditorService,
                            UserService, Restangular, API_URL) {
     var vm = this;
 
@@ -16,6 +18,9 @@
       editing: false,
       loaded: false,
       loading: false,
+      editor: {
+        open: false
+      },
       profileImage: {
         busy: false,
         uploading: false,
@@ -23,16 +28,44 @@
       }
     };
 
+    // temp
+    vm.textElements = [
+      {
+        text: 'Hey',
+        color: '#343dfa',
+        size: '14px',
+        align: 'left',
+        weight: 'normal'
+      },
+      {
+        text: 'Good day sir!',
+        color: '#000',
+        size: '12px',
+        align: 'right',
+        weight: 'bold'
+      },
+      {
+        text: 'lorem ipsum long sentence typing random stuff to make it appear longer to show or hide stuff',
+        color: '#000',
+        size: '12px',
+        align: 'right',
+        weight: 'light'
+      }
+    ];
+
     vm.id = $stateParams.id;
     vm.story = null;
     vm.profileImage = '';
 
+    vm.closeTextEditor = closeTextEditor;
     vm.deletePage = deletePage;
     vm.deleteStory = deleteStory;
     vm.togglePageOptions = togglePageOptions;
     vm.openQuickEditor = openQuickEditor;
+    vm.openTextEditor = openTextEditor;
     vm.updatePageImage = updatePageImage;
     vm.uploadProfileImage = uploadProfileImage;
+    vm.toggleEditing = toggleEditing;
 
     activate();
 
@@ -54,6 +87,12 @@
 
       _defaultListeners();
 
+    }
+
+    function closeTextEditor(element) {
+      vm.states.editor.open = false;
+
+      element.states.selected = false;
     }
 
     function deletePage(page, index) {
@@ -86,6 +125,22 @@
       } else {
         page.states.optionsOpen = false;
       }
+    }
+
+    function openTextEditor(event, element) {
+
+      $log.debug("Open text editor!");
+
+      if(element.states) element.states.selected = true;
+      else element.states = {selected: true};
+
+      var positions = TextEditorService.calcPos(event.pageX, event.pageY);
+
+      TextEditorService.setPos(positions);
+      TextEditorService.setElem(element);
+
+      vm.states.editor.open = true;
+
     }
 
     function openQuickEditor() {
@@ -166,6 +221,13 @@
 
       });
 
+    }
+
+    function toggleEditing() {
+      if(vm.states.editing) {
+        vm.states.editor.open = false;
+      }
+      vm.states.editing = !vm.states.editing;
     }
 
     function _defaultListeners() {

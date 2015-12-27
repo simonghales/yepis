@@ -5,6 +5,7 @@
     .module('yepis', [
 
       'yepis.general',
+      'yepis.general',
       'yepis.user',
       'yepis.upload',
       'yepis.story',
@@ -19,7 +20,8 @@
       'ngDialog',
       'ngFileUpload',
       'dndLists',
-      'offClick'
+      'offClick',
+      'contenteditable'
     ]);
 
   // General

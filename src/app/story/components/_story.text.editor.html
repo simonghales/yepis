@@ -1,0 +1,52 @@
+<div class="text-editor" off-click="storyVM.closeTextEditor(editorVM.element);"
+     off-click-if="storyVM.states.editing"
+     off-click-filter="'.text-block__element'">
+  <div class="text-editor__preview"
+       ng-bind-html="editorVM.info.text">
+  </div>
+  <ul class="text-editor__body">
+    <li>
+      <label class="simple-option">
+        <span class="label">Size</span>
+        <span class="value select-wrapper">
+          <span class="select-icon icon icon-down-dir"></span>
+          <select ng-model="editorVM.info.size" ng-change="editorVM.updateSize();">
+            <option ng-repeat="option in editorVM.options.sizes" value="{{option}}">{{option}}</option>
+          </select>
+        </span>
+      </label>
+    </li>
+    <li>
+      <label class="simple-option">
+        <span class="label">Colour</span>
+        <span class="value">
+          <span class="colour-selector">
+            <span class="icon icon-eyedropper"></span>
+          </span>
+        </span>
+      </label>
+    </li>
+    <li>
+      <label class="simple-option">
+        <span class="label">Weight</span>
+        <span class="value select-wrapper">
+          <span class="select-icon icon icon-down-dir"></span>
+          <select ng-model="editorVM.info.weight" ng-change="editorVM.updateWeight();">
+            <option ng-repeat="option in editorVM.options.weights" value="{{option}}">{{option}}</option>
+          </select>
+        </span>
+      </label>
+    </li>
+    <li>
+      <label class="simple-option">
+        <span class="label">Alignment</span>
+        <span class="value select-wrapper">
+          <span class="select-icon icon icon-down-dir"></span>
+          <select ng-model="editorVM.info.align" ng-change="editorVM.updateAlignment();">
+            <option ng-repeat="option in editorVM.options.alignments" value="{{option}}">{{option}}</option>
+          </select>
+        </span>
+      </label>
+    </li>
+  </ul>
+</div>

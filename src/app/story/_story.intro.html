@@ -44,7 +44,7 @@
           ng-class="{
                 'state--active' : storyVM.states.editing
               }"
-          ng-click="storyVM.states.editing = !storyVM.states.editing">
+          ng-click="storyVM.toggleEditing();">
           <span class="icon icon-pencil"></span>
         </button>
       </div>

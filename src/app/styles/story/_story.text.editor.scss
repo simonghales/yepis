@@ -2,9 +2,131 @@
 
 .text-editor {
   @include box-shadow(0, 0, 10px, rgba(0,0,0,0.2));
+  @include transition(transform 200ms ease);
   position: absolute;
-  top: 140px;
-  left: 50px;
-
+  top: 0;
+  left: 0;
+  width: 260px;
+  z-index: 1000;
   background-color: #fff;
 }
+
+  .text-editor__preview {
+    @extend .text--big;
+    @include text-truncate();
+    padding: 15px;
+    border-bottom: 1px solid $clr-faintest;
+  }
+
+  .text-editor__body {
+    padding: 15px;
+
+    > li {
+      @extend .clearfix;
+      margin-top: 12px;
+      height: 22px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+    }
+
+    .colour-selector {
+      margin-left: 5px;
+    }
+
+  }
+
+  .simple-option {
+
+    .label {
+      display: inline-block;
+      min-width: 70px;
+      margin-right: 10px;
+      font-size: 12px;
+      line-height: 22px;
+
+      float: left;
+    }
+
+    .value {
+      position: relative;
+    }
+
+    .select-wrapper {
+
+      @include border-radius(12px);
+      border: 1px solid $clr-light;
+      padding: 2px 0;
+      width: 70px;
+      height: 22px;
+
+    }
+
+    select {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      height: 22px;
+      background: none;
+      width: 70px;
+      border: 0;
+      padding: 0 7px;
+      font-weight: bold;
+      color: $clr-dark;
+      font-size: 11px;
+      position: relative;
+      top: -1px;
+
+      &:focus {
+        outline: none;
+      }
+
+    }
+
+    .select-icon {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      color: $clr-light;
+    }
+
+  }
+
+    .colour-selector {
+      @include border-radius(2px);
+      cursor: pointer;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      background-color: $clr-dark;
+      position: relative;
+
+      &:active {
+
+        .icon {
+          transform: translateY(1px);
+        }
+
+      }
+
+      .icon {
+        @include border-radius(2px);
+        @include transition(transform 200ms ease);
+        position: absolute;
+        top: 3px;
+        right: 3px;
+
+        display: block;
+        background-color: #ffffff;
+        color: #000000;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        font-size: 10px;
+
+      }
+
+    }

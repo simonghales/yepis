@@ -7,33 +7,32 @@
       <div class="padding-border border--bottom"></div>
       <div class="story-page__content__inner"> <!-- text block -->
         <div class="text-block">
-          content
+          <div ng-repeat="element in storyVM.textElements">
+            <div ng-if="!storyVM.states.editing"
+                 class="text-block__element"
+                  ng-bind-html="element.text"></div>
+            <div ng-if="storyVM.states.editing"
+                 class="text-block__element"
+                 ng-class="{
+                  'state--selected': element.states.selected
+                 }"
+                  ng-click="storyVM.openTextEditor($event, element);"
+                  ng-focus="storyVM.openTextEditor($event, element);"
+                  ng-model="element.text"
+                  contenteditable="{{storyVM.states.editing}}"
+                  strip-br="false"
+                  strip-tags="true"></div>
+            <!--
+                  ng-blur="storyVM.closeTextEditor(true);"
+                  -->
+          </div>
+          <!-- controls -->
           <div class="text-block__add">
             <span class="icon icon-plus"></span>
             <span class="text">ADD TEXT</span>
           </div>
           <div class="text-block__control move-right icon icon-right-open"></div>
           <div class="text-block__control move-down icon icon-down-open"></div>
-        </div>
-
-        <div class="text-editor">
-          <div>
-            TEXT PREVIEW
-          </div>
-          <ul>
-            <li>
-              Size
-            </li>
-            <li>
-              Colour
-            </li>
-            <li>
-              Weight
-            </li>
-            <li>
-              Alignment
-            </li>
-          </ul>
         </div>
 
       </div>

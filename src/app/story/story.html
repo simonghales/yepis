@@ -3,6 +3,7 @@
   }" class="story" story>
   <story-intro></story-intro>
   <section ng-if="storyVM.states.author" class="story-pages">
+    <text-editor ng-if="storyVM.states.editing" ng-show="storyVM.states.editor.open" class="ng-hide"></text-editor>
     <story-page ng-repeat="page in storyVM.story.pages"></story-page>
   </section>
   <!-- can't use track by if the person can re-arrange, so we need to have two copies,
